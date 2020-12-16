@@ -5,7 +5,7 @@
           <div class="container-fluid">
               <div class="row mb-2">
                   <div class="col-sm-6">
-                      <h1 class="m-0 text-dark">Product - <?= $data_warehouse['name']; ?></h1>
+                      <h1 class="m-0 text-dark">Product</h1>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -42,6 +42,7 @@
                                           <thead>
                                               <tr>
                                                   <th>No</th>
+                                                  <th>Code</th>
                                                   <th>Name</th>
                                                   <th>UoM</th>
                                                   <th>Action</th>
@@ -69,9 +70,13 @@
                           </button>
                       </div>
                       <div class="modal-body">
+                          <input type="hidden" name="id" id="id">
+                          <div class="form-group">
+                              <label>Code</label>
+                              <input type="text" name="code" id="code" class="form-control" placeholder="Product Code" readonly>
+                          </div>
                           <div class="form-group">
                               <label>Name</label>
-                              <input type="hidden" name="id" id="id">
                               <input type="text" name="name" id="name" class="form-control" placeholder="Product Name" required>
                           </div>
                           <div class="form-group">
@@ -93,19 +98,20 @@
       $(document).ready(function() {
           var mode = 'add';
 
-          var id_warehouse = "<?= $id_warehouse ?>"
-
           var table = $('#table_product').DataTable({
               ajax: {
                   url: "<?= site_url('product/get_ajax_data') ?>",
                   data: function(d) {
-                      d.id_warehouse = id_warehouse;
+                      //d.id_warehouse = id_warehouse;
                   }
               },
               order: [],
               columns: [{
                       data: 'id',
                       orderable: false,
+                  },
+                  {
+                      data: 'code',
                   },
                   {
                       data: 'name'
@@ -229,7 +235,7 @@
               e.preventDefault();
               if (confirm('Are you sure want to submit this data ?')) {
                   var formData = new FormData($(this)[0]);
-                  formData.append('id_warehouse', id_warehouse);
+                  //formData.append('id_warehouse', id_warehouse);
                   $.ajax({
                       url: "<?= site_url('product/save_data') ?>",
                       data: formData,

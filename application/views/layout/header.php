@@ -19,6 +19,8 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" id="theme-styles">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/toastr/toastr.min.css">
     <!-- Font Awesome -->

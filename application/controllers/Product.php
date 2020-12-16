@@ -11,7 +11,7 @@ class Product extends CI_Controller
         $this->load->model('m_product');
     }
 
-    public function index($id_warehouse = '')
+    public function _index($id_warehouse = '')
     {
         if ($id_warehouse != '') {
             $data = [
@@ -38,11 +38,19 @@ class Product extends CI_Controller
         }
     }
 
+    public function index()
+    {
+        $data = [
+            'title' => 'Manage Product',
+        ];
+        $this->template->load('layout/v_layout', 'product/v_product', $data);
+    }
+
     public function get_ajax_data()
     {
         $id_warehouse = $this->input->post('id_warehouse');
         $where = [
-            'tp.id_warehouse' => $id_warehouse
+            //get_ajax_data'tp.id_warehouse' => $id_warehouse
         ];
         $data = $this->m_product->get_data_product($where)->result_array();
         $final['draw'] = 1;
@@ -55,11 +63,12 @@ class Product extends CI_Controller
     public function save_data()
     {
         $id = $this->input->post('id');
-
+        $code = $this->input->post('code');
         $data = array(
+            'code' => $this->m_product->get_last_code(),
             'name' => $this->input->post('name'),
             'id_uom' => $this->input->post('id_uom'),
-            'id_warehouse' => $this->input->post('id_warehouse'),
+            //'id_warehouse' => $this->input->post('id_warehouse'),
         );
 
         //check duplicate name
@@ -67,6 +76,7 @@ class Product extends CI_Controller
         $where = array(
             'name' => $data['name'],
             'deletedate IS NULL' => NULL,
+            'id!=' => $id,
         );
         $check_data = $this->m_app->select_global('tb_product', $where);
 
@@ -95,6 +105,9 @@ class Product extends CI_Controller
                 ));
             }
         } else {
+            if (strlen($code) > 0) {
+                unset($data['code']);
+            }
             $update = $this->m_app->update_global('tb_product', array('id' => $id), $data);
             if ($update >= 0) {
                 echo json_encode(array(
@@ -134,6 +147,16 @@ class Product extends CI_Controller
                 'data' => array()
             ));
         }
+    }
+
+    public function get_ajax_data_select()
+    {
+        // Search term
+        $searchTerm     = $this->input->post('searchTerm');
+
+        $response       = $this->m_product->get_data_product_select($searchTerm);
+
+        echo json_encode($response);
     }
 
     public function uom()

@@ -1,9 +1,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="<?= site_url() ?>" class="brand-link">
           <img src="<?= base_url('assets/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light">AdminLTE 3</span>
+          <span class="brand-text font-weight-light">Inventory System</span>
       </a>
 
       <!-- Sidebar -->
@@ -60,6 +60,12 @@
                               <a href="<?= site_url('origin') ?>" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Origin</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="<?= site_url('destination') ?>" class="nav-link">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>Destination</p>
                               </a>
                           </li>
                           <li class="nav-item has-treeview">
@@ -120,7 +126,7 @@
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-copy"></i>
                           <p>
-                              Transactions Data
+                              Transaction Data
                               <i class="right fas fa-angle-left"></i>
                           </p>
                       </a>
@@ -135,9 +141,15 @@
                               </a>
                               <ul class="nav nav-treeview">
                                   <li class="nav-item">
-                                      <a href="<?= site_url('inbound/add_order') ?>" class="nav-link">
+                                      <a href="<?= site_url('inbound/order/add') ?>" class="nav-link">
                                           <i class="far fa-dot-circle nav-icon"></i>
                                           <p>Add Order Inbound</p>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a href="<?= site_url('inbound/confirm') ?>" class="nav-link">
+                                          <i class="far fa-dot-circle nav-icon"></i>
+                                          <p>Confirm Inbound</p>
                                       </a>
                                   </li>
                                   <li class="nav-item">

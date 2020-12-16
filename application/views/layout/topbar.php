@@ -42,6 +42,8 @@
     <script src="<?= base_url('assets/') ?>dist/js/adminlte.js"></script>
     <!-- Toastr -->
     <script src="<?= base_url('assets/') ?>plugins/toastr/toastr.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
     <div class="wrapper">
 

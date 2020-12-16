@@ -1,28 +1,28 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Origin extends CI_Controller
+class Destination extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
         check_login();
-        $this->load->model('m_origin');
+        $this->load->model('m_destination');
     }
 
     public function index()
     {
         $data = [
-            'title' => 'Manage Data Origin'
+            'title' => 'Manage Data Destination'
         ];
 
-        $this->template->load('layout/v_layout', 'origin/v_origin', $data);
+        $this->template->load('layout/v_layout', 'destination/v_destination', $data);
     }
 
-    public function get_ajax_data_origin()
+    public function get_ajax_data_destination()
     {
-        $data = $this->m_app->select_global('tb_origin', array('deletedate IS NULL' => NULL))->result_array();
+        $data = $this->m_app->select_global('tb_destination', array('deletedate IS NULL' => NULL))->result_array();
         $final['draw'] = 1;
         $final['recordsTotal'] = sizeof($data);
         $final['recordsFiltered'] = sizeof($data);
@@ -39,7 +39,7 @@ class Origin extends CI_Controller
         );
 
         if ($id == '' || $id == NULL) {
-            $id = $this->m_app->insert_global('tb_origin', $data);
+            $id = $this->m_app->insert_global('tb_destination', $data);
             if ($id > 0) {
                 echo json_encode(array(
                     'code' => 200,
@@ -54,7 +54,7 @@ class Origin extends CI_Controller
                 ));
             }
         } else {
-            $update = $this->m_app->update_global('tb_origin', array('id' => $id), $data);
+            $update = $this->m_app->update_global('tb_destination', array('id' => $id), $data);
             if ($update >= 0) {
                 echo json_encode(array(
                     'code' => 200,
@@ -79,7 +79,7 @@ class Origin extends CI_Controller
             'deletedate' => date('Y-m-d')
         );
 
-        $update = $this->m_app->update_global('tb_origin', array('id' => $id), $data);
+        $update = $this->m_app->update_global('tb_destination', array('id' => $id), $data);
         if ($update >= 0) {
             echo json_encode(array(
                 'code' => 200,
@@ -100,7 +100,7 @@ class Origin extends CI_Controller
         // Search term
         $searchTerm     = $this->input->post('searchTerm');
 
-        $response       = $this->m_origin->get_data_origin($searchTerm);
+        $response       = $this->m_destination->get_data_destination($searchTerm);
 
         echo json_encode($response);
     }

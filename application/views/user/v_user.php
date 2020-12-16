@@ -41,6 +41,7 @@
                                                   <th>No</th>
                                                   <th>Username</th>
                                                   <th>Name</th>
+                                                  <th>Email</th>
                                                   <th>Level</th>
                                                   <th>Status</th>
                                                   <th>Action</th>
@@ -76,6 +77,10 @@
                           <div class="form-group">
                               <label>Name</label>
                               <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+                          </div>
+                          <div class="form-group">
+                              <label>Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                           </div>
                           <div class="form-group">
                               <label>Level</label>
@@ -123,6 +128,9 @@
                   },
                   {
                       data: 'name'
+                  },
+                  {
+                      data: 'email'
                   },
                   {
                       data: 'level'
@@ -207,6 +215,7 @@
           })
 
           $('#table_user').on('click', '.btn-edit', function() {
+              init_select_level();
               $('[name=password]').prop('required', false);
               $('#password').val('').change();
               $('.help-text').show();

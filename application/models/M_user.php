@@ -49,7 +49,7 @@ class M_user extends CI_Model
 
     public function get_data_user()
     {
-        $this->db->select('tu.id, tu.username, tu.name, tu.id_level, tul.name level, tu.status');
+        $this->db->select('tu.id, tu.username, tu.name, tu.id_level, tul.name level, tu.status, tu.email');
         $this->db->from('tb_user tu');
         $this->db->join('tb_user_level tul', 'tu.id_level=tul.id');
         $this->db->where('tu.deletedate IS NULL', NULL, FALSE);

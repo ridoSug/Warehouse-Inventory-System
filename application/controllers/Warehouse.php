@@ -101,6 +101,16 @@ class Warehouse extends CI_Controller
         }
     }
 
+    public function get_ajax_data_select()
+    {
+        // Search term
+        $searchTerm     = $this->input->post('searchTerm');
+
+        $response       = $this->m_warehouse->get_data_warehouse_select($searchTerm);
+
+        echo json_encode($response);
+    }
+
     //locator
 
     public function locator($id_warehouse = '')
@@ -227,6 +237,17 @@ class Warehouse extends CI_Controller
                 'data' => array()
             ));
         }
+    }
+
+    public function get_ajax_data_select_locator()
+    {
+        // Search term
+        $searchTerm     = $this->input->post('searchTerm');
+        $id_warehouse   = $this->input->post('id_warehouse');
+
+        $response       = $this->m_warehouse->get_data_locator_select($searchTerm, $id_warehouse);
+
+        echo json_encode($response);
     }
 
     //role warehouse

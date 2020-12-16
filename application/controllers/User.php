@@ -49,6 +49,7 @@ class User extends CI_Controller
         $data = [
             'username' => $this->input->post('username'),
             'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
             'id_level' => $this->input->post('id_level'),
             'status' => $this->input->post('status'),
             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),

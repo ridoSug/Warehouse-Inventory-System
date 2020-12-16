@@ -42,7 +42,6 @@
                                       <table class="table" id="table_locator">
                                           <thead>
                                               <tr>
-                                                  <th>No</th>
                                                   <th>Name</th>
                                                   <th>Action</th>
                                               </tr>
@@ -101,10 +100,6 @@
               },
               order: [],
               columns: [{
-                      data: 'id',
-                      orderable: false,
-                  },
-                  {
                       data: 'name'
                   },
                   {
@@ -217,6 +212,8 @@
                                   if (result.code == 200) {
                                       table.ajax.reload();
                                       hide_modal();
+                                      $('[name=id]').val('');
+                                      $('[name=name]').val('');
                                   }
                                   $('#modal_general').modal('show');
                               } catch (e) {
